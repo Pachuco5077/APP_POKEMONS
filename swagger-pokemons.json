@@ -1,0 +1,95 @@
+openapi: 3.0.1
+info:
+  title: Pokemon API
+  version: 1.0.0
+  description: Servicios de consulta de Pokemones
+servers:
+  - url: http://localhost:7800/api/v1/
+    description: Servidor local
+paths:
+  /pokemons_retrieve:
+    get:
+      summary: Obtiene todos los Pokemones
+      operationId: getAllPokemons
+      responses:
+        '200':
+          description: Lista completa de Pokemones
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pokemons:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        url:
+                          type: string
+  /pokemons_retrievebytype:
+    get:
+      summary: Obtiene Pokemones por tipo
+      operationId: getPokemonsByType
+      parameters:
+        - name: type
+          in: query
+          required: true
+          description: Tipo de Pokemon a buscar
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Categoría y cantidad de pokemones de esa categoría
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  category:
+                    type: string
+                  pokemon_count:
+                    type: integer
+        '400':
+          description: Parámetro no válido
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  message:
+                    type: string
+        '404':
+          description: Tipo de Pokemon no encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  message:
+                    type: string
+        '503':
+          description: Servicio no disponible
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  message:
+                    type: string
+components:
+  schemas:
+    Pokemon:
+      type: object
+      properties:
+        name:
+          type: string
+        url:
+          type: string

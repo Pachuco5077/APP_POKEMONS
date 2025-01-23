@@ -1,0 +1,87 @@
+
+
+CREATE COMPUTE MODULE SF_ManejoErrores_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		DECLARE refInBody REFERENCE to InputRoot.JSON.Data;
+		
+		DECLARE errorData REFERENCE TO Environment.error; 
+		
+		CREATE LASTCHILD OF OutputRoot DOMAIN 'HTTPResponseHeader';
+        SET OutputRoot.HTTPResponseHeader."X-Error" = errorData.error;
+        SET OutputRoot.HTTPResponseHeader."X-Original-HTTP-Status-Code" = errorData.codigoError;
+        SET OutputRoot.HTTPResponseHeader."X-Error-Message" = errorData.message;
+        SET OutputRoot.HTTPResponseHeader."X-Request-URL" = errorData.requestUrl;
+		
+		CREATE LASTCHILD OF OutputRoot DOMAIN 'JSON';
+		CREATE FIELD OutputRoot.JSON.Data;
+		DECLARE refOutBody REFERENCE TO OutputRoot.JSON.Data;
+		SET refOutBody = refInBody;
+		
+		RETURN TRUE;
+	END;
+END MODULE;
+
+
+CREATE COMPUTE MODULE ModifErrorBadRequest_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+
+		SET Environment.Error = InputRoot.JSON.Data;
+		SET Environment.error.error = 'BAD REQUEST';
+		SET Environment.error.codigoError = '400';
+		SET Environment.error.requestUrl = 'https://pokeapi.co/api/v2/type/';
+
+		CREATE LASTCHILD OF OutputRoot DOMAIN 'JSON';
+		CREATE FIELD OutputRoot.JSON.Data.message;
+		CREATE FIELD OutputRoot.JSON.Data.error;
+		
+		SET OutputRoot.JSON.Data.message = 'Parámetro de entrada incorrecto, debe entrar el parámetro "category" (Query, ejemplo: "type=fire").';
+		SET OutputRoot.JSON.Data.error = 'BAD REQUEST';
+		
+		RETURN TRUE;
+	END;
+END MODULE;
+
+
+CREATE COMPUTE MODULE ModifErrorNotFound_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+
+		SET Environment.Error = InputRoot.JSON.Data;
+		SET Environment.error.error = 'NOT FOUND';
+		SET Environment.error.codigoError = '404';
+		SET Environment.error.requestUrl = 'https://pokeapi.co/api/v2/type/';
+
+		CREATE LASTCHILD OF OutputRoot DOMAIN 'JSON';
+		CREATE FIELD OutputRoot.JSON.Data.message;
+		CREATE FIELD OutputRoot.JSON.Data.error;
+		
+		SET OutputRoot.JSON.Data.message = 'Categoría no encontrada, pruebe usando las categorias: steel, water, bug, dragon, electric, ghost, fire, fairy, ice, fighting, normal, plant, psychic, rock, sinister, earth, poison, flying';
+		SET OutputRoot.JSON.Data.error = 'NOT FOUND';
+
+		RETURN TRUE;
+	END;
+END MODULE;
+
+
+CREATE COMPUTE MODULE SF_ModifFailure_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+
+		SET Environment.Error = InputRoot.JSON.Data;
+		SET Environment.error.error = 'SERVICE NOT AVAILABLE';
+		SET Environment.error.codigoError = '503';
+		SET Environment.error.requestUrl = 'https://pokeapi.co/api/v2/type/';
+
+		CREATE LASTCHILD OF OutputRoot DOMAIN 'JSON';
+		CREATE FIELD OutputRoot.JSON.Data.message;
+		CREATE FIELD OutputRoot.JSON.Data.error;
+		
+		SET OutputRoot.JSON.Data.message = 'Servicio no disponible, no se pudo acceder a: ' || 'https://pokeapi.co/api/v2/type/';
+		SET OutputRoot.JSON.Data.error = 'SERVICE NOT AVAILABLE';
+
+		RETURN TRUE;
+	END;
+END MODULE;

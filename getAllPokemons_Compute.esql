@@ -1,0 +1,35 @@
+PATH PokemonLibrary;
+
+
+CREATE COMPUTE MODULE SF_GetAllPokemons_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+
+		CREATE FIELD OutputRoot.JSON.Data;
+
+		RETURN TRUE;
+	END;
+END MODULE;
+
+CREATE COMPUTE MODULE SF_ModifList_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE refInBody REFERENCE to InputRoot.JSON.Data;
+
+		CREATE LASTCHILD OF OutputRoot DOMAIN 'JSON';
+		CREATE FIELD OutputRoot.JSON.Data.pokemons;
+
+		DECLARE totalPokemons INTEGER;
+		SET totalPokemons = PokemonLibrary.count(refInBody.results);
+--		CREATE FIELD OutputRoot.JSON.Data.pokemon_count;   			--Descomentar para devolver la cantidad de pokemons
+--		SET OutputRoot.JSON.Data.pokemon_count = totalPokemons;		--Descomentar para devolver la cantidad de pokemons
+		
+		SET OutputRoot.JSON.Data.pokemons = refInBody.results;
+
+		RETURN TRUE;
+		
+	END;
+END MODULE;
+
+
+

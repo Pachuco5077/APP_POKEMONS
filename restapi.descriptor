@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:restapiDescriptor xmlns="http://com.ibm.etools.mft.descriptor.base" xmlns:ns2="http://com.ibm.etools.mft.descriptor.restapi" definitionType="openapi_3" definitionFile="swagger-pokemons.json" implementation="gen/APP_POKEMONS.msgflow" https="false" definitionWithExtRef="false" faultFormat="JSON">
+    <references>
+        <sharedLibraryReference>
+            <libraryName>PokemonLibrary</libraryName>
+        </sharedLibraryReference>
+    </references>
+    <ns2:operations>
+        <ns2:operation name="getAllPokemons" implementation="getAllPokemons.subflow"/>
+        <ns2:operation name="getPokemonsByType" implementation="getPokemonsByType.subflow"/>
+    </ns2:operations>
+    <ns2:errorHandlers>
+        <ns2:errorHandler type="CATCH" implementation="APP_POKEMONSInputCatchHandler.subflow"/>
+        <ns2:errorHandler type="FAILURE" implementation="APP_POKEMONSInputFailureHandler.subflow"/>
+        <ns2:errorHandler type="TIMEOUT" implementation="APP_POKEMONSInputTimeoutHandler.subflow"/>
+    </ns2:errorHandlers>
+</ns2:restapiDescriptor>

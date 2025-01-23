@@ -1,0 +1,45 @@
+
+
+CREATE COMPUTE MODULE getPokemonsByType_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+
+		DECLARE typePokemon CHARACTER COALESCE(InputLocalEnvironment.HTTP.Input.QueryString.category, InputLocalEnvironment.REST.Input.Parameters.category, '-');
+
+		CREATE LASTCHILD OF OutputRoot DOMAIN 'JSON';
+		CREATE FIELD OutputRoot.JSON.Data;
+
+		IF CONTAINS(typePokemon, 'type=') AND STARTSWITH(typePokemon, 'type=') AND LENGTH(SUBSTRING(typePokemon AFTER '=')) > 0 THEN
+			DECLARE refLocalEnv REFERENCE TO OutputLocalEnvironment;
+
+			SET refLocalEnv.Destination.HTTP.RequestURL = 'https://pokeapi.co/api/v2/type/' || SUBSTRING(typePokemon AFTER '=');
+			SET refLocalEnv.Destination.HTTP.Timeout = 6;
+			SET refLocalEnv.Destination.HTTP.RequestLine.Method = 'GET';
+
+		ELSE
+			SET Environment.Error = InputRoot.JSON.Data;
+			PROPAGATE TO TERMINAL 'Failure';
+
+			RETURN FALSE;
+		END IF;
+		RETURN TRUE;
+	END;
+END MODULE;
+
+
+CREATE COMPUTE MODULE ModifListByType_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+
+		DECLARE refInBody REFERENCE to InputRoot.JSON.Data;
+
+		CREATE LASTCHILD OF OutputRoot DOMAIN 'JSON';
+		CREATE FIELD OutputRoot.JSON.Data.category;
+		CREATE FIELD OutputRoot.JSON.Data.pokemon_count;
+
+		SET OutputRoot.JSON.Data.category = refInBody.name;
+		SET OutputRoot.JSON.Data.pokemon_count = PokemonLibrary.count(refInBody.pokemon);
+
+		RETURN TRUE;
+	END;
+END MODULE;

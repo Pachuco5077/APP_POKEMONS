@@ -89,5 +89,11 @@ Este proyecto implementa flujos de integración en IBM App Connect Enterprise (A
 
 ---
 
+## **Trazas (Logs)**
+Las trazas se guardaran en la carpeta Logs con la siguiente ruta y con el nombre log_app_poke-api.log
+   ```bash
+   C:\Logs_APP_POKEMONS\Logs
+   ```
+---
+
 **Autor:** Vladimir  
-```  

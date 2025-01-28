@@ -37,7 +37,7 @@ CREATE COMPUTE MODULE ModifErrorBadRequest_Compute
 		CREATE FIELD OutputRoot.JSON.Data.message;
 		CREATE FIELD OutputRoot.JSON.Data.error;
 		
-		SET OutputRoot.JSON.Data.message = 'Parámetro de entrada incorrecto, debe entrar el parámetro "category" (Query, ejemplo: "type=fire").';
+		SET OutputRoot.JSON.Data.message = 'Parámetro de entrada incorrecto, debe entrar el parámetro "category" con el valor: "type=?". (Query, ejemplo: parameter: "category", value: "type=fire").';
 		SET OutputRoot.JSON.Data.error = 'BAD REQUEST';
 		
 		RETURN TRUE;

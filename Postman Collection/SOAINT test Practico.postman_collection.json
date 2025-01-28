@@ -24,10 +24,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://pachu:7080/api/v1/pokemons_retrieve",
+					"raw": "http://localhost:7080/api/v1/pokemons_retrieve",
 					"protocol": "http",
 					"host": [
-						"pachu"
+						"localhost"
 					],
 					"port": "7080",
 					"path": [
@@ -57,10 +57,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://pachu:7080/api/v1/pokemons_retrievebytype?category=type=3",
+					"raw": "http://localhost:7080/api/v1/pokemons_retrievebytype?category=type=flying",
 					"protocol": "http",
 					"host": [
-						"pachu"
+						"localhost"
 					],
 					"port": "7080",
 					"path": [
@@ -71,7 +71,8 @@
 					"query": [
 						{
 							"key": "category",
-							"value": "type=3"
+							"value": "type=flying",
+							"description": "Categoría por tipo de pokemon"
 						}
 					]
 				}

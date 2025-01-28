@@ -25,6 +25,7 @@ Editar
   { "name": "charizard", "type": "fire" }
 ]
 }
+
 2. pokemons_retrievebytype
 Descripción: Recupera la lista de Pokémons según su tipo.
 Método: GET

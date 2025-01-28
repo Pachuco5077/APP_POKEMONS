@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:APP_POKEMONSInputCatchHandler.subflow="APP_POKEMONSInputCatchHandler.subflow" xmlns:APP_POKEMONSInputFailureHandler.subflow="APP_POKEMONSInputFailureHandler.subflow" xmlns:APP_POKEMONSInputTimeoutHandler.subflow="APP_POKEMONSInputTimeoutHandler.subflow" xmlns:ComIbmLabel.msgnode="ComIbmLabel.msgnode" xmlns:ComIbmRouteToLabel.msgnode="ComIbmRouteToLabel.msgnode" xmlns:ComIbmWSInput.msgnode="ComIbmWSInput.msgnode" xmlns:ComIbmWSReply.msgnode="ComIbmWSReply.msgnode"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:getAllPokemons.subflow="getAllPokemons.subflow" xmlns:getPokemonsByType.subflow="getPokemonsByType.subflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="gen/APP_POKEMONS.msgflow" nsPrefix="gen_APP_POKEMONS.msgflow">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:APP_POKEMONSInputTimeoutHandler.subflow="APP_POKEMONSInputTimeoutHandler.subflow" xmlns:ComIbmLabel.msgnode="ComIbmLabel.msgnode" xmlns:ComIbmRouteToLabel.msgnode="ComIbmRouteToLabel.msgnode" xmlns:ComIbmWSInput.msgnode="ComIbmWSInput.msgnode" xmlns:ComIbmWSReply.msgnode="ComIbmWSReply.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:getAllPokemons.subflow="getAllPokemons.subflow"
+    xmlns:getPokemonsByType.subflow="getPokemonsByType.subflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="gen/APP_POKEMONS.msgflow" nsPrefix="gen_APP_POKEMONS.msgflow">
   <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1" nodeLayoutStyle="RECTANGLE">
     <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
     <translation xmi:type="utility:TranslatableString" key="APP_POKEMONS" bundleName="gen/APP_POKEMONS" pluginId="APP_POKEMONS"/>
@@ -16,32 +16,22 @@
       <nodes xmi:type="ComIbmWSReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="550,150">
         <translation xmi:type="utility:ConstantString" string="HTTP Reply"/>
       </nodes>
-      <nodes xmi:type="APP_POKEMONSInputCatchHandler.subflow:FCMComposite_1" xmi:id="FCMComposite_1_4" location="325,225">
-        <translation xmi:type="utility:ConstantString" string="APP_POKEMONSInputCatchHandler"/>
-      </nodes>
-      <nodes xmi:type="APP_POKEMONSInputFailureHandler.subflow:FCMComposite_1" xmi:id="FCMComposite_1_5" location="325,300">
-        <translation xmi:type="utility:ConstantString" string="APP_POKEMONSInputFailureHandler"/>
-      </nodes>
-      <nodes xmi:type="APP_POKEMONSInputTimeoutHandler.subflow:FCMComposite_1" xmi:id="FCMComposite_1_6" location="325,375">
+      <nodes xmi:type="APP_POKEMONSInputTimeoutHandler.subflow:FCMComposite_1" xmi:id="FCMComposite_1_6" location="330,250">
         <translation xmi:type="utility:ConstantString" string="APP_POKEMONSInputTimeoutHandler"/>
       </nodes>
-      <nodes xmi:type="ComIbmLabel.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="125,450" labelName="getAllPokemons">
+      <nodes xmi:type="ComIbmLabel.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="130,330" labelName="getAllPokemons">
         <translation xmi:type="utility:ConstantString" string="getAllPokemons (Label)"/>
       </nodes>
-      <nodes xmi:type="getAllPokemons.subflow:FCMComposite_1" xmi:id="FCMComposite_1_8" location="325,450">
+      <nodes xmi:type="getAllPokemons.subflow:FCMComposite_1" xmi:id="FCMComposite_1_8" location="330,330">
         <translation xmi:type="utility:ConstantString" string="getAllPokemons (Implementation)"/>
       </nodes>
-      <nodes xmi:type="ComIbmLabel.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="125,525" labelName="getPokemonsByType">
+      <nodes xmi:type="ComIbmLabel.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="130,410" labelName="getPokemonsByType">
         <translation xmi:type="utility:ConstantString" string="getPokemonsByType (Label)"/>
       </nodes>
-      <nodes xmi:type="getPokemonsByType.subflow:FCMComposite_1" xmi:id="FCMComposite_1_10" location="325,525">
+      <nodes xmi:type="getPokemonsByType.subflow:FCMComposite_1" xmi:id="FCMComposite_1_10" location="330,410">
         <translation xmi:type="utility:ConstantString" string="getPokemonsByType (Implementation)"/>
       </nodes>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
-      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.catch" targetTerminalName="InTerminal.Input_1"/>
-      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.Output_1" targetTerminalName="InTerminal.in"/>
-      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.Input_1"/>
-      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.Output_1" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.timeout" targetTerminalName="InTerminal.Input_1"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_6" sourceTerminalName="OutTerminal.Output_1" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_8" targetNode="FCMComposite_1_8" sourceNode="FCMComposite_1_7" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.Input_1"/>

@@ -1,0 +1,82 @@
+{
+	"info": {
+		"_postman_id": "ac11d853-7c95-4b8d-8ff0-76aade3671e2",
+		"name": "SOAINT test Practico",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25805012"
+	},
+	"item": [
+		{
+			"name": "pokemons_retrieve",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://pachu:7080/api/v1/pokemons_retrieve",
+					"protocol": "http",
+					"host": [
+						"pachu"
+					],
+					"port": "7080",
+					"path": [
+						"api",
+						"v1",
+						"pokemons_retrieve"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pokemons_retrievebytype",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://pachu:7080/api/v1/pokemons_retrievebytype?category=type=3",
+					"protocol": "http",
+					"host": [
+						"pachu"
+					],
+					"port": "7080",
+					"path": [
+						"api",
+						"v1",
+						"pokemons_retrievebytype"
+					],
+					"query": [
+						{
+							"key": "category",
+							"value": "type=3"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

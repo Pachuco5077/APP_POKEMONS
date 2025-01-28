@@ -1,4 +1,4 @@
-```markdown
+
 # SOAINT Test Práctico
 
 Este proyecto implementa flujos de integración en IBM App Connect Enterprise (ACE) para realizar consultas a la API de Pokémons. El proyecto incluye dos servicios REST principales que permiten recuperar datos de Pokémons y contar la cantidad por un tipo de categoria específico.
@@ -29,8 +29,6 @@ Este proyecto implementa flujos de integración en IBM App Connect Enterprise (A
         }
     ]
 }
-
-```
 
 ---
 
